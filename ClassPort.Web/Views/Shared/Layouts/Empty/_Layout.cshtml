@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>@ViewData["Title"]</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+        
+        <link href="~/theme/tabler/css/tabler.min.css" rel="stylesheet"/>
+        <link href="~/theme/tabler/css/demo.min.css" rel="stylesheet"/>
+        <link href="~/fonts/lineawesome/css/line-awesome.min.css" rel="stylesheet"/>
+        <link href="~/theme/tabler/css/site.css" rel="stylesheet">
+        <link href="~/theme/front/css/styles.css" rel="stylesheet" >
+
+
+        @RenderSection("Styles", required: false)
+
+    </head>
+<body>
+
+<div class="page page-center">
+    
+    @RenderBody()
+
+</div>
+
+<script src="/vendor/jquery/jquery.min.js"></script>
+
+<!-- Tabler Core -->
+<script src="~/theme/tabler/js/tabler.min.js"></script>
+<script src="~/theme/tabler/js/demo.min.js"></script>
+<script src="~/theme/tabler/js/site.js"></script>
+
+<!-- Core theme JS-->
+<script src="~/theme/front/js/site.js"></script>
+
+
+@RenderSection("Scripts", required: false)
+
+</body>
+</html>
+
+
+

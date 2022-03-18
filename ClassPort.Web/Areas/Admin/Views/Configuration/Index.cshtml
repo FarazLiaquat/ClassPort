@@ -1,0 +1,235 @@
+﻿@model ClassPort.Domain.Entities.Settings.ApplicationSettings
+
+@{
+    ViewData["Title"] = "Configuration";
+}
+
+<div class="page-header d-print-none">
+	<div class="row align-items-center">
+		<div class="col">
+			<!-- Page pre-title -->
+			<div class="page-pretitle">
+				Admin
+			</div>
+			<h2 class="page-title">
+				Site Configuration
+			</h2>
+		</div>
+	</div>
+</div>
+
+<ul class="nav nav-tabs mt-3" data-bs-toggle="tabs">
+	<li class="nav-item">
+		<a href="#tabs-core" class="nav-link active" data-bs-toggle="tab">Site Details</a>
+	</li>
+	<li class="nav-item">
+		<a href="#tabs-email" class="nav-link" data-bs-toggle="tab">Email</a>
+	</li>
+	<li class="nav-item">
+		<a href="#tabs-startup" class="nav-link" data-bs-toggle="tab">Startup</a>
+	</li>
+	<li class="nav-item ms-auto">
+		<a href="#tabs-settings-7" class="nav-link" title="Settings" data-bs-toggle="tab"><!-- Download SVG icon from http://tabler-icons.io/i/settings -->
+			<svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+		</a>
+	</li>
+</ul>
+
+<div class="card tabs">
+	<div class="card-body">
+		<form asp-action="Edit">
+			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+			<div class="tab-content">
+				<div class="tab-pane show active" id="tabs-core">
+					<div class="row pt-2 pb-3">
+						<div class="col">
+							<p class="m-0 text-muted">These settings reflect the site brand and general default appearance.</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-10">
+							<div class="form-group">
+								<label asp-for="SiteName" class="control-label"></label>
+								<input asp-for="SiteName" class="form-control"/>
+								<span asp-validation-for="SiteName" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label asp-for="Company" class="control-label"></label>
+                                <input asp-for="Company" class="form-control"/>
+                                <span asp-validation-for="Company" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label class="control-label">Base URL (Include trailing slash)</label>
+                                <a tabindex="0" class="form-help" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="top" data-bs-html="true" data-bs-content="<p>The Base URL for the site.  If left empty the base url will be automatically resolved based off of the default named route.</p>">?</a>
+                                <input asp-for="BaseUrl" class="form-control"/>
+                                <span asp-validation-for="BaseUrl" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+					<div class="row">
+						<div class="col-md-10">
+							<div class="form-group">
+								<label class="control-label">Small Logo Image URL</label>
+								<input asp-for="LogoImageUrlSmall" class="form-control"/>
+								<span asp-validation-for="LogoImageUrlSmall" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane" id="tabs-email">
+					<div class="row pt-2 pb-3">
+						<div class="col">
+							<p class="m-0 text-muted">These settings allow your application to send email using SMTP.</p>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10">
+							<div class="form-group">
+								<label asp-for="Email.DefaultSenderAddress" class="control-label"></label>
+								<input asp-for="Email.DefaultSenderAddress" class="form-control"/>
+								<span asp-validation-for="Email.DefaultSenderAddress" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10">
+							<div class="form-group">
+								<label asp-for="Email.DefaultSenderName" class="control-label"></label>
+								<input asp-for="Email.DefaultSenderName" class="form-control"/>
+								<span asp-validation-for="Email.DefaultSenderName" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					@{ 
+					/*
+					// NOT YET IMPLEMENTED
+					<div class="row">
+						<div class="col-4">
+							<div class="form-group">
+								<label asp-for="Email.Server" class="control-label"></label>
+								<input asp-for="Email.Server" class="form-control"/>
+								<span asp-validation-for="Email.Server" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="col-2">
+							<div class="form-group">
+								<label asp-for="Email.Port" class="control-label"></label>
+								<input asp-for="Email.Port" class="form-control"/>
+								<span asp-validation-for="Email.Port" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-4">
+							<div class="form-group">
+								<label asp-for="Email.User" class="control-label"></label>
+								<input asp-for="Email.User" class="form-control"/>
+								<span asp-validation-for="Email.User" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="col-4">
+							<div class="form-group">
+								<label asp-for="Email.Password" class="control-label"></label>
+								<input asp-for="Email.Password" class="form-control"/>
+								<span asp-validation-for="Email.Password" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-10">
+							<div class="form-group d-flex">
+								<label asp-for="Email.UseSsl" class="form-check form-switch">
+									<input asp-for="Email.UseSsl" class="form-check-input"/>
+									<span class="form-check-label">Use SSL?</span>
+								</label>
+								<span asp-validation-for="Email.UseSsl" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-10">
+							<div class="form-group d-flex">
+								<label asp-for="Email.RequiresAuthentication" class="form-check form-switch">
+									<input asp-for="Email.RequiresAuthentication" class="form-check-input"/>
+									<span class="form-check-label">Require Authentication?</span>
+								</label>
+								<span asp-validation-for="Email.RequiresAuthentication" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-10">
+							<div class="form-group d-flex">
+								<label asp-for="Email.UsePickupDirectory" class="form-check form-switch">
+									<input asp-for="Email.UsePickupDirectory" class="form-check-input"/>
+									<span class="form-check-label">Use Pickup Directory?</span>
+								</label>
+								<span asp-validation-for="Email.UsePickupDirectory" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10">
+							<div class="form-group">
+								<label asp-for="Email.MailPickupDirectory" class="control-label"></label>
+								<input asp-for="Email.MailPickupDirectory" class="form-control"/>
+								<span asp-validation-for="Email.MailPickupDirectory" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-10">
+							<div class="form-group">
+								<label asp-for="Email.PreferredEncoding" class="control-label"></label>
+								<input asp-for="Email.PreferredEncoding" class="form-control"/>
+								<span asp-validation-for="Email.PreferredEncoding" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					*/}
+				</div>
+				<div class="tab-pane" id="tabs-startup">
+					<div class="row">
+						<div class="row pt-2 pb-3">
+							<div class="col">
+								<p class="m-0 text-muted">The approach you utilize for performing migrations and seeding data should dictate how you want your application to start up.  By default, migrations and seeding will always be attempted.  
+									Depending on your production environment you may want to avoid this default behavior and perform this operation manually.</p>
+							</div>
+						</div>
+						<div class="col-md-10">
+							<div class="form-group d-flex">
+								<label asp-for="ApplyMigrationsOnStartup" class="form-check form-switch">
+									<input asp-for="ApplyMigrationsOnStartup" class="form-check-input"/>
+									<span class="form-check-label">Apply Migrations</span>
+								</label>
+								<span asp-validation-for="ApplyMigrationsOnStartup" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-10">
+							<div class="form-group d-flex">
+								<label asp-for="SeedDataOnStartup" class="form-check form-switch">
+									<input asp-for="SeedDataOnStartup" class="form-check-input"/>
+									<span class="form-check-label">Seed Data</span>
+								</label>
+								<span asp-validation-for="SeedDataOnStartup" class="text-danger"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group mt-3">
+					<input type="submit" value="Save" class="btn btn-primary"/>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

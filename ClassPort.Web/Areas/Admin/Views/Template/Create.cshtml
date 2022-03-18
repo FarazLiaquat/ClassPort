@@ -1,0 +1,137 @@
+﻿@model ClassPort.Domain.Entities.Templates.Template
+
+@{
+    ViewData["Title"] = "Create Template";
+}
+
+
+<div class="page-header d-print-none mb-2">
+	<div class="row align-items-center">
+		<div class="col">
+			<div class="page-pretitle">
+				@ViewData["AreaTitle"]
+			</div>
+			<h2 class="page-title">
+				Create Template
+			</h2>
+		</div>
+	</div>
+</div>
+<div class="card shadow mb-5">
+	<div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <form asp-action="Create" id="editContentForm">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="form-group col-6">
+                            <label asp-for="Slug" class="control-label"></label>
+                            <a tabindex="0" class="form-help" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="top" data-bs-html="true" data-bs-content="<p>Slugs are small identifiers that can be used to easily identify this template.  Changing an existing slug may break portions of this web application that depend on it.</p>">?</a>
+                            <input asp-for="Slug" class="form-control mt-1" />
+                            <span asp-validation-for="Slug" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-6">
+                            <label asp-for="Name" class="control-label"></label>
+                            <input asp-for="Name" class="form-control mt-1" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Description" class="control-label"></label>
+                        <input asp-for="Description" class="form-control" />
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="PreHeader" class="control-label"></label>
+                        <a tabindex="0" class="form-help" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-placement="top" data-bs-html="true" data-bs-content="<p>This small snippet of text will appear next to the subject line for this template and gives the user a sneak peak at the email.  It is very important for click-through-rate to make a strong introduction.</p>">?</a>
+                        <input asp-for="PreHeader" class="form-control" />
+                        <span asp-validation-for="PreHeader" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Body" class="control-label"></label>
+                        <div id="Body" class="border shadow-sm" style="min-height: 600px; display: none"></div>
+                        <span asp-validation-for="Body" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create Template" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-default mt-4">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script>
+        var require = {
+            paths: {
+                'vs': '/vendor/monaco-editor/min/vs'
+            }
+        };
+    </script>
+
+    <script src="~/vendor/he/he.js"></script>
+    <script src="~/vendor/monaco-editor/min/vs/loader.js"></script>
+
+    <script type="text/javascript">
+        var contentElem = document.getElementById("Body");
+        var escapedhtml = contentElem.innerHTML;
+        var content = he.decode(escapedhtml);
+        contentElem.innerHTML = '';
+
+        $("#Body").show();
+
+        $(document).ready(function() {
+
+            require(['vs/editor/editor.main'],
+                () => {
+                    // Initialize the editor
+                    const editor = monaco.editor.create(document.getElementById("Body"),
+                        {
+                            theme: 'vs',
+                            model: monaco.editor.createModel(content, "liquid"),
+                            wordWrap: 'off',
+                            automaticLayout: true,
+                            minimap: {
+                                enabled: true
+                            },
+                            scrollbar: {
+                                vertical: 'auto',
+                                horizontal: 'auto'
+                            }
+                        });
+
+                    const form = document.getElementById("editContentForm");
+                    form.addEventListener("formdata",
+                        e => {
+                            e.formData.append('body', editor.getModel().getValue());
+                        });
+
+                    document.editor = editor;
+                });
+
+            function insert(content) {
+                var p = document.editor.getPosition();
+                document.editor.executeEdits("",
+                    [
+                        {
+                            range: new monaco.Range(p.lineNumber,
+                                p.column,
+                                p.lineNumber,
+                                p.column),
+                            text: content
+                        }
+                    ]
+                );
+            }
+
+        });
+    </script>
+}

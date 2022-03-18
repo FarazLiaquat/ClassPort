@@ -1,0 +1,32 @@
+﻿@model ClassPort.Domain.Entities.Identity.ApplicationRole
+
+@{
+	Layout = null;
+    ViewData["Title"] = "Delete";
+}
+
+<dl class="row">
+	<dt class="col-sm-3">
+		@Html.DisplayNameFor(model => model.Name)
+	</dt>
+	<dd class="col-sm-9">
+		@Html.DisplayFor(model => model.Name)
+	</dd>
+	<dt class="col-sm-3">
+		@Html.DisplayNameFor(model => model.NormalizedName)
+	</dt>
+	<dd class="col-sm-9">
+		@Html.DisplayFor(model => model.NormalizedName)
+	</dd>
+	<dt class="col-sm-3">
+		@Html.DisplayNameFor(model => model.ConcurrencyStamp)
+	</dt>
+	<dd class="col-sm-9">
+		@Html.DisplayFor(model => model.ConcurrencyStamp)
+	</dd>
+</dl>
+            
+<form asp-action="Delete" id="deleteForm">
+	<input type="hidden" asp-for="Id"/>
+</form>
+

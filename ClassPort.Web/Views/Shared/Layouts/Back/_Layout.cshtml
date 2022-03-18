@@ -1,0 +1,71 @@
+﻿@inject ClassPort.Domain.Entities.Settings.ApplicationSettings Settings
+@using RoverCore.BreadCrumbs.Views.Shared.Components.BreadCrumbs
+@using ClassPort.Domain.Entities
+
+<!doctype html>
+@{
+    /*
+    * Tabler - Premium and Open Source dashboard template with responsive and high quality UI.
+    * @@version 1.0.0-beta5
+    * @@link https://tabler.io
+    * Copyright 2018-2021 The Tabler Authors
+    * Copyright 2018-2021 codecalm.net Paweł Kuna
+    * Licensed under MIT (https://github.com/tabler/tabler/blob/master/LICENSE)
+    */
+}
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>@ViewData["Title"]</title>
+
+    <!-- CSS files -->
+    <link href="~/theme/tabler/css/tabler.min.css" rel="stylesheet"/>
+    <link href="~/theme/tabler/css/tabler-flags.min.css" rel="stylesheet"/>
+    <link href="~/theme/tabler/css/tabler-payments.min.css" rel="stylesheet"/>
+    <link href="~/theme/tabler/css/tabler-vendors.min.css" rel="stylesheet"/>
+    <link href="~/theme/tabler/css/demo.min.css" rel="stylesheet"/>
+    <link href="~/fonts/lineawesome/css/line-awesome.min.css" rel="stylesheet"/>
+    <link href="~/theme/tabler/css/site.css" rel="stylesheet">
+
+    @RenderSection("Styles", required: false)
+	
+  </head>
+  <body >
+    <div class="page">
+	
+        @await Html.PartialAsync("~/Views/Shared/Layouts/Back/_Sidebar.cshtml")
+        @await Html.PartialAsync("~/Views/Shared/Layouts/Back/_Navbar.cshtml")
+      
+        <div class="page-wrapper">
+            <partial name="~/Views/Shared/Partials/_CookieConsentPartial.cshtml" />
+
+            <div class="page-body">
+              <div class="container-fluid">
+
+                    @(await Component.InvokeAsync<BreadCrumbsViewComponent>())
+                    
+                    @RenderBody()
+
+              </div>
+            </div>
+		    
+		    @await Html.PartialAsync("~/Views/Shared/Layouts/Back/_Footer.cshtml")
+
+      </div>
+    </div>
+  <!-- Libs JS -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+
+  <!-- Tabler Core -->
+    <script src="~/theme/tabler/js/tabler.min.js"></script>
+    <script src="~/theme/tabler/js/demo.min.js"></script>
+    <script src="~/theme/tabler/js/site.js"></script>
+
+	@await Component.InvokeAsync("Notyf") 
+	@RenderSection("Scripts", required: false)
+	
+  </body>
+</html>
+

@@ -1,0 +1,25 @@
+﻿@using RoverCore.Navigation.Views.Shared.Components.Navbar
+@inject ClassPort.Domain.Entities.Settings.ApplicationSettings Settings
+
+
+<aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <h1 class="navbar-brand navbar-brand-autodark">
+                <a asp-area="Dashboard" asp-controller="Home" asp-action="Index">
+                    <div class="d-inline-flex flex-row align-items-center">
+                        <img src="@Settings.LogoImageUrlSmall" height="32" alt="@Settings.SiteName" class="navbar-brand-image me-2">
+                        <p class="mt-0 mb-0 p-1">@Settings.SiteName</p>
+                    </div>
+                </a>
+            </h1>
+        <div class="navbar-nav flex-row d-lg-none">
+            @await Html.PartialAsync("~/Views/Shared/Partials/_NavbarPartial.cshtml")
+        </div>
+            <div class="collapse navbar-collapse" id="navbar-menu">
+                @(await Component.InvokeAsync<NavbarViewComponent>())
+            </div>
+        </div>
+</aside>

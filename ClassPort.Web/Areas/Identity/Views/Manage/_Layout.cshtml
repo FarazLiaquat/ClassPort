@@ -1,0 +1,33 @@
+﻿@{
+    Layout = "~/Views/Shared/Layouts/Back/_Layout.cshtml";
+}
+
+<div class="page-header d-print-none mb-2">
+    <div class="row align-items-center">
+        <div class="col">
+            <!-- Page pre-title -->
+            <div class="page-pretitle">
+                Manage Account
+            </div>
+            <h2 class="page-title">
+                Change Account Settings
+            </h2>
+        </div>
+		
+		
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <partial name="_ManageNav"/>
+            <div class="card-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @RenderSection("Scripts", required: false)
+}

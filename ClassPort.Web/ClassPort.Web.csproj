@@ -50,6 +50,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Folder Include="Views\AdminSide\" />
 	  <Folder Include="wwwroot\img\email\" />
 	</ItemGroup>
 

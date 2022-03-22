@@ -21,7 +21,10 @@ public class ApplicationRoleSeed : ISeeder
         var roles = new List<string>
         {
             "Admin",
-            "User"
+            "User",
+            "Teacher",
+            "SchoolAdmin",
+            "Student"
         };
 
         foreach (var roleName in roles)

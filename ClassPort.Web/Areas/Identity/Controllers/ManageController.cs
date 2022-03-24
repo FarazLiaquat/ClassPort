@@ -47,7 +47,8 @@ public class ManageController : BaseController<ManageController>
     {
         _breadcrumbs.StartAtAction("Dashboard", "Index", "Dashboard", new { Area = "Admin" })
             .Then("Manage Account");
-
+        _breadcrumbs.StartAtAction("Dashboard", "Index", "Dashboard", new { Area = "Student" })
+            .Then("Manage Account");
         var user = await _userManager.GetUserAsync(User);
         if (user == null)
         {

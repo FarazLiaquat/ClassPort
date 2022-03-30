@@ -8,6 +8,7 @@ using ClassPort.Domain.Entities.Identity;
 using ClassPort.Domain.Entities.Serilog;
 using ClassPort.Domain.Entities.Templates;
 
+
 namespace ClassPort.Infrastructure.Persistence.DbContexts;
 
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
@@ -26,6 +27,7 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     public DbSet<ConfigurationItem> ConfigurationItem { get; set; }
     public DbSet<Member> Member { get; set; }
     public DbSet<Template> Template { get; set; }
+    public DbSet<Location> Location { get; set; }
     public DbSet<Log> ServiceLog { get; set; }
     public DbSet<AuditLog> AuditLog { get; set; }
 

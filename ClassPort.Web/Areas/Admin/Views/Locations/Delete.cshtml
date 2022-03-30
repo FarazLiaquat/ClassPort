@@ -1,0 +1,27 @@
+﻿@model ClassPort.Domain.Entities.Location
+
+@{
+    Layout = null;
+}
+
+
+<dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Place)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Place)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.RoomNum)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.RoomNum)
+                </dd>
+</dl>
+    
+<form asp-action="Delete" id="deleteForm">
+                <input type="hidden" asp-for="Id"/>
+</form>
+
+

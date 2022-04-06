@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using ClassPort.Domain.Entities;
 using ClassPort.Infrastructure.Persistence.DbContexts;
+using ClassPort.Domain.Entities.Identity;
 
 namespace ClassPort.Web.Areas.Identity.Controllers;
 
@@ -35,6 +36,7 @@ public class StudentController : BaseController<StudentController>
     private const string areaTitle = "Identity";
 
     private readonly ApplicationDbContext _context;
+    private readonly UserManager<ApplicationUser> _userManager;
 
     public StudentController(ApplicationDbContext context)
     {
@@ -65,7 +67,7 @@ public class StudentController : BaseController<StudentController>
         {
             return NotFound();
         }
-
+        
         var student = await _context.Student
             .FirstOrDefaultAsync(m => m.Id == id);
         if (student == null)
@@ -113,78 +115,10 @@ public class StudentController : BaseController<StudentController>
             }
         return View(student);
     }
-
-    // GET: Identity/Student/Edit/5
-    public async Task<IActionResult> Edit(int? id)
-    {
-        ViewData["AreaTitle"] = areaTitle;
-
-        _breadcrumbs.StartAtAction("Dashboard", "Index", "Home", new { Area = "Dashboard" })
-        .ThenAction("Manage Student", "Index", "Student", new { Area = "Identity" })
-        .Then("Edit Student");     
-
-        if (id == null)
-        {
-            return NotFound();
-        }
-
-        var student = await _context.Student.FindAsync(id);
-        if (student == null)
-        {
-            return NotFound();
-        }
-        
-
-        return View(student);
-    }
-
-    // POST: Identity/Student/Edit/5
     // To protect from overposting attacks, enable the specific properties you want to bind to.
     // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Edit(int id, [Bind(editBindingFields)] Student student)
-    {
-        ViewData["AreaTitle"] = areaTitle;
-
-        _breadcrumbs.StartAtAction("Dashboard", "Index", "Home", new { Area = "Dashboard" })
-        .ThenAction("Manage Student", "Index", "Student", new { Area = "Identity" })
-        .Then("Edit Student");  
-    
-        if (id != student.Id)
-        {
-            return NotFound();
-        }
-        
-        Student model = await _context.Student.FindAsync(id);
-
-        model.Created = student.Created;
-        model.Time = student.Time;
-        // Remove validation errors from fields that aren't in the binding field list
-        ModelState.Scrub(editBindingFields);           
-
-        if (ModelState.IsValid)
-        {
-            try
-            {
-                await _context.SaveChangesAsync();
-                _toast.Success("Updated successfully.");
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!StudentExists(student.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return RedirectToAction(nameof(Index));
-        }
-        return View(student);
-    }
 
     // GET: Identity/Student/Delete/5
     public async Task<IActionResult> Delete(int? id)

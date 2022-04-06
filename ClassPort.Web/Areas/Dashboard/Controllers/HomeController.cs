@@ -31,7 +31,7 @@ public class HomeController : BaseController<HomeController>
             User = await _userManager.GetUserAsync(User)
         };
         _toast.Success($"Welcome back {viewModel.User.FirstName}!");
-        if (User.IsInRole("SchoolAdmin"))
+       /* if (User.IsInRole("SchoolAdmin"))
         {
             return RedirectToAction("SchoolAdmin");
         }
@@ -43,8 +43,10 @@ public class HomeController : BaseController<HomeController>
         {
             return RedirectToAction("Student");
         }
+       */
         return View(viewModel);
     }
+    /*
     public async Task<IActionResult> Teacher()
     {
         _breadcrumbs.StartAtAction("Dashboard", "Index", "Home", new { Area = "Dashboard" })
@@ -81,5 +83,6 @@ public class HomeController : BaseController<HomeController>
         _toast.Success($"Welcome back {viewModel.User.FirstName}!");
         return View(viewModel);
     }
+    */
 
   }

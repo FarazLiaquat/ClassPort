@@ -28,9 +28,10 @@ public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Applicati
     public DbSet<Member> Member { get; set; }
     public DbSet<Template> Template { get; set; }
     public DbSet<Location> Location { get; set; }
-    public DbSet<Student> Student { get; set; }
+    public DbSet<Student> Student { get; set; } 
     public DbSet<Log> ServiceLog { get; set; }
     public DbSet<AuditLog> AuditLog { get; set; }
+    public DbSet<StudentList> StudentList { get; set; }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

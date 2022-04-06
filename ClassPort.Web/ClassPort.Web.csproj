@@ -11,10 +11,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Areas\Identity\Controllers\StudentListController.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="AutoMapper" Version="11.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
 		<PackageReference Include="Hangfire" Version="1.7.28" />

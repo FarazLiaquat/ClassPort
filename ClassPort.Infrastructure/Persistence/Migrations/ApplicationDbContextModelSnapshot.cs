@@ -377,6 +377,9 @@ namespace ClassPort.Infrastructure.Persistence.Migrations
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Time")
                         .HasColumnType("int");
 

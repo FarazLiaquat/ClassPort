@@ -28,7 +28,7 @@ public class StudentController : BaseController<StudentController>
 	    public int Id { get; set; }
 	    public DateTime Created { get; set; }
 	    public int Time { get; set; }
-        public string Name { get; set; }
+	    public string Name { get; set; }
 	}
 
 	private const string createBindingFields = "Id,Created,Time,Name";
@@ -161,6 +161,7 @@ public class StudentController : BaseController<StudentController>
 
         model.Created = student.Created;
         model.Time = student.Time;
+        model.Name = student.Name;
         // Remove validation errors from fields that aren't in the binding field list
         ModelState.Scrub(editBindingFields);           
 

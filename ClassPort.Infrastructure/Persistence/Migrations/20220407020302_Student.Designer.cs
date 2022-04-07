@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClassPort.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220406223912_Student")]
+    [Migration("20220407020302_Student")]
     partial class Student
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -378,6 +378,9 @@ namespace ClassPort.Infrastructure.Persistence.Migrations
 
                     b.Property<DateTime>("Created")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Time")
                         .HasColumnType("int");

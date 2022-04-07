@@ -9,5 +9,6 @@ namespace ClassPort.Domain.Entities
         [Required]
         public DateTime Created { get; set; }
         public int Time { get; set; }
+        public string Name { get; set; }
     }
 }

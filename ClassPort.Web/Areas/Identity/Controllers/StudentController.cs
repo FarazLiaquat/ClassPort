@@ -28,10 +28,11 @@ public class StudentController : BaseController<StudentController>
 	    public int Id { get; set; }
 	    public DateTime Created { get; set; }
 	    public int Time { get; set; }
+        public string Name { get; set; }
 	}
 
-	private const string createBindingFields = "Id,Created,Time";
-    private const string editBindingFields = "Id,Created,Time";
+	private const string createBindingFields = "Id,Created,Time,Name";
+    private const string editBindingFields = "Id,Created,Time,Name";
     private const string areaTitle = "Identity";
 
     private readonly ApplicationDbContext _context;

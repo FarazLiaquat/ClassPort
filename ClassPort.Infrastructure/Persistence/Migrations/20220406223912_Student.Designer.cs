@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClassPort.Infrastructure.Persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220405151926_Student")]
+    [Migration("20220406223912_Student")]
     partial class Student
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

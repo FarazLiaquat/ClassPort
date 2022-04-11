@@ -388,6 +388,29 @@ namespace ClassPort.Infrastructure.Persistence.Migrations
                     b.ToTable("Student");
                 });
 
+            modelBuilder.Entity("ClassPort.Domain.Entities.StudentList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("StudentList");
+                });
+
             modelBuilder.Entity("ClassPort.Domain.Entities.Templates.Template", b =>
                 {
                     b.Property<int>("Id")
